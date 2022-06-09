@@ -9,7 +9,7 @@ public class InputController : MonoBehaviour,IPointerDownHandler, IPointerUpHand
     bool check_tap = false;
     public enum buttons_type
     {
-        right,left,move,stop
+        right,left,move,back
     }
     [SerializeField] buttons_type button;
     [SerializeField] GameObject car_cube_controller;
@@ -17,6 +17,7 @@ public class InputController : MonoBehaviour,IPointerDownHandler, IPointerUpHand
     {
         check_tap = true;
     }
+
 
 
     public void OnPointerUp(PointerEventData eventData)
@@ -43,15 +44,16 @@ public class InputController : MonoBehaviour,IPointerDownHandler, IPointerUpHand
         switch (button)
         {
             case buttons_type.right:
-                tra.Rotate(0,0.1f,0);
+                tra.Rotate(0,0.2f,0);
                 break;
             case buttons_type.left:
-                tra.Rotate(0, -0.1f, 0);
+                tra.Rotate(0, -0.2f, 0);
                 break;
             case buttons_type.move:
-                tra.position += tra.forward * 0.05f;
+                tra.position += tra.forward * 0.1f;
                 break;
-            case buttons_type.stop:
+            case buttons_type.back:
+                tra.position += tra.forward * -0.1f;
                 break;
         }
     }
